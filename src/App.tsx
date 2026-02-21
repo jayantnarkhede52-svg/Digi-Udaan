@@ -315,12 +315,12 @@ const pricingData: any = {
 
 // --- DATA ARRAYS & CONSTANTS ---
 const servicesData = [
-  { title: "Google SEO", icon: <img src={seoIcon} alt="SEO" style={{ width: "60px", height: "60px" }} />, gist: "We optimize your site’s DNA to rank higher and stay there." },
-  { title: "Google Ads", icon: <img src={adsIcon} alt="Ads" style={{ width: "60px", height: "60px" }} />, gist: "High-intent campaigns designed to maximize leads and ROI." },
-  { title: "Meta Ads", icon: <img src={metaIcon} alt="Meta" style={{ width: "60px", height: "60px" }} />, gist: "Thumb-stopping visuals that turn likes into loyal customers." },
-  { title: "Social Media", icon: <img src={socialIcon} alt="Social" style={{ width: "60px", height: "60px" }} />, gist: "Humanized content that keeps your community engaged 24/7." },
-  { title: "GMB Local", icon: <img src={gmbIcon} alt="GMB" style={{ width: "60px", height: "60px" }} />, gist: "Optimize your map presence to dominate 'near me' searches." },
-  { title: "React Dev", icon: <img src={reactIcon} alt="React" style={{ width: "60px", height: "60px" }} />, gist: "Sleek, fast, and SEO-friendly websites built for performance." }
+  { title: "Google SEO", icon: <img src={seoIcon} alt="SEO" style={{ width: "60px", height: "60px" }} />, gist: "We optimize your site's DNA to rank higher and stay there.", img: seoServiceImg, page: "service_seo" },
+  { title: "Google Ads", icon: <img src={adsIcon} alt="Ads" style={{ width: "60px", height: "60px" }} />, gist: "High-intent campaigns designed to maximize leads and ROI.", img: googleAdsImg, page: "service_ads" },
+  { title: "Meta Ads", icon: <img src={metaIcon} alt="Meta" style={{ width: "60px", height: "60px" }} />, gist: "Thumb-stopping visuals that turn likes into loyal customers.", img: socialMediaImg, page: "service_social" },
+  { title: "Social Media", icon: <img src={socialIcon} alt="Social" style={{ width: "60px", height: "60px" }} />, gist: "Humanized content that keeps your community engaged 24/7.", img: socialMediaImg, page: "service_social" },
+  { title: "GMB Local", icon: <img src={gmbIcon} alt="GMB" style={{ width: "60px", height: "60px" }} />, gist: "Optimize your map presence to dominate 'near me' searches.", img: gmbServiceImg, page: "service_gmb" },
+  { title: "React Dev", icon: <img src={reactIcon} alt="React" style={{ width: "60px", height: "60px" }} />, gist: "Sleek, fast, and SEO-friendly websites built for performance.", img: webDevImg, page: "service_web" }
 ];
 
 const detailedServicesData: any = {
@@ -963,12 +963,10 @@ const ServicesPage = ({ colors, setCurrentPage }: { colors: any, setCurrentPage:
 
       <section style={{ padding: "80px 8%", background: colors.card, textAlign: "center" }}>
         <h2 style={{ fontSize: "32px", fontWeight: "800", marginBottom: "30px" }}>Ready to scale?</h2>
-        <button onClick={() => alert("Contact form coming soon!")} style={{ padding: "18px 40px", borderRadius: "100px", border: "none", background: colors.accent, color: "white", fontWeight: "700", cursor: "pointer" }}>Get a Proposal</button>
+        <button onClick={() => setCurrentPage('contact')} style={{ padding: "18px 40px", borderRadius: "100px", border: "none", background: colors.accent, color: "white", fontWeight: "700", cursor: "pointer" }}>Get a Proposal</button>
       </section>
-
-      <footer style={{ padding: "40px 8%", textAlign: "center", borderTop: `1px solid ${colors.border}`, fontSize: "14px", color: colors.subText }}>© 2026 Digi Udaan Marketing Mumbai.</footer>
     </div>
-  </div >
+  </div>
 );
 
 const ServiceDetailPage = ({ colors, currentPage, setCurrentPage }: any) => {
@@ -1946,11 +1944,22 @@ export default function App() {
           <section style={{ padding: "80px 8% 120px" }}>
             <h2 id="services-title" style={{ fontSize: "32px", fontWeight: "800", marginBottom: "48px" }}>Our Core Expertise</h2>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: "24px" }}>
-              {servicesData.map((s, i) => (
-                <div key={i} style={{ background: colors.card, padding: "40px", borderRadius: "24px", border: `1px solid ${colors.border}` }}>
-                  <div style={{ fontSize: "24px", marginBottom: "20px" }}>{s.icon}</div>
-                  <h3 style={{ fontSize: "20px", fontWeight: "600", marginBottom: "12px" }}>{s.title}</h3>
-                  <p style={{ color: colors.subText, fontSize: "15px", lineHeight: "1.6" }}>{s.gist}</p>
+              {servicesData.map((s: any, i) => (
+                <div key={i} onClick={() => { if (s.page) { setCurrentPage(s.page); window.scrollTo(0, 0); } }} style={{ background: colors.card, borderRadius: "24px", border: `1px solid ${colors.border}`, overflow: "hidden", cursor: s.page ? "pointer" : "default", transition: "transform 0.3s, border-color 0.3s" }}
+                  onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-8px)"; e.currentTarget.style.borderColor = colors.accent; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.borderColor = colors.border; }}
+                >
+                  {s.img && (
+                    <div style={{ height: "180px", background: `linear-gradient(135deg, rgba(139,92,246,0.15), transparent)`, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", padding: "20px" }}>
+                      <img src={s.img} alt={s.title} style={{ height: "100%", width: "auto", objectFit: "contain", filter: "drop-shadow(0 5px 15px rgba(0,0,0,0.3))" }} />
+                    </div>
+                  )}
+                  <div style={{ padding: "30px" }}>
+                    <div style={{ fontSize: "24px", marginBottom: "16px" }}>{s.icon}</div>
+                    <h3 style={{ fontSize: "20px", fontWeight: "600", marginBottom: "12px" }}>{s.title}</h3>
+                    <p style={{ color: colors.subText, fontSize: "15px", lineHeight: "1.6", marginBottom: "15px" }}>{s.gist}</p>
+                    {s.page && <div style={{ color: colors.accent, fontWeight: "700", fontSize: "14px" }}>Learn More →</div>}
+                  </div>
                 </div>
               ))}
             </div>
