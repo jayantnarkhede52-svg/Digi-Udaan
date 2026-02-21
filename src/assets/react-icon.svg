@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <defs>
+    <filter id="glowCyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <rect width="500" height="500" fill="#05010d" fill-opacity="0" />
+  
+  <!-- React Atom Shapes -->
+  <ellipse cx="250" cy="250" rx="200" ry="60" fill="none" stroke="#00d8ff" stroke-width="10" transform="rotate(0 250 250)" filter="url(#glowCyan)" opacity="0.8" />
+  <ellipse cx="250" cy="250" rx="200" ry="60" fill="none" stroke="#00d8ff" stroke-width="10" transform="rotate(60 250 250)" filter="url(#glowCyan)" opacity="0.8" />
+  <ellipse cx="250" cy="250" rx="200" ry="60" fill="none" stroke="#00d8ff" stroke-width="10" transform="rotate(120 250 250)" filter="url(#glowCyan)" opacity="0.8" />
+  
+  <!-- Core -->
+  <circle cx="250" cy="250" r="30" fill="#00d8ff" filter="url(#glowCyan)" />
+</svg>
