@@ -1452,68 +1452,27 @@ const CallToAction = ({ colors, setCurrentPage }: { colors: any, setCurrentPage:
 
 
 const ContactPage = ({ colors }: { colors: any }) => {
-  const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
-  const [prefill, setPrefill] = useState('');
-
-  useEffect(() => {
-    const pf = (window as any).__contactPrefill || '';
-    setPrefill(pf);
-    delete (window as any).__contactPrefill;
-  }, []);
-
-  const inputStyle: any = { padding: "15px", borderRadius: "12px", border: "none", background: "rgba(255,255,255,0.05)", color: "white", outline: "none", fontFamily: "inherit", fontSize: "15px" };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setFormStatus('sending');
-    const form = e.currentTarget;
-    const data = new FormData(form);
-    try {
-      const res = await fetch("https://formspree.io/f/YOUR_FORM_ID", { method: "POST", body: data, headers: { Accept: "application/json" } });
-      if (res.ok) { setFormStatus('success'); form.reset(); }
-      else { setFormStatus('error'); }
-    } catch { setFormStatus('error'); }
-  };
-
   return (
     <div style={{ paddingTop: "120px", paddingBottom: "80px", paddingLeft: "8%", paddingRight: "8%" }}>
-      <section style={{ textAlign: "center", marginBottom: "80px" }}>
+      <section style={{ textAlign: "center", marginBottom: "60px" }}>
         <h1 style={{ fontSize: "48px", fontWeight: "800", marginBottom: "20px" }}>Let's <span style={{ color: colors.accent }}>Talk Growth.</span></h1>
         <p style={{ fontSize: "20px", color: colors.subText, maxWidth: "600px", margin: "0 auto" }}>Ready to take your business to the next level? Fill out the form below or reach out directly.</p>
       </section>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "60px" }}>
-        <div style={{ background: colors.card, padding: "40px", borderRadius: "24px", border: `1px solid ${colors.border}` }}>
-          <h2 style={{ fontSize: "24px", fontWeight: "700", marginBottom: "30px" }}>Send us a message</h2>
-          {formStatus === 'success' ? (
-            <div style={{ textAlign: "center", padding: "40px 0" }}>
-              <div style={{ fontSize: "48px", marginBottom: "20px" }}>✅</div>
-              <h3 style={{ fontSize: "24px", fontWeight: "700", marginBottom: "10px" }}>Message Sent!</h3>
-              <p style={{ color: colors.subText }}>We'll get back to you within 24 hours.</p>
-              <button onClick={() => setFormStatus('idle')} style={{ marginTop: "20px", padding: "12px 30px", borderRadius: "100px", border: `1px solid ${colors.border}`, background: "transparent", color: colors.text, cursor: "pointer", fontWeight: "600" }}>Send Another</button>
-            </div>
-          ) : (
-            <form style={{ display: "flex", flexDirection: "column", gap: "20px" }} onSubmit={handleSubmit}>
-              <input name="name" type="text" placeholder="Your Name" style={inputStyle} required />
-              <input name="email" type="email" placeholder="Your Email" style={inputStyle} required />
-              <input name="phone" type="tel" placeholder="Phone Number (optional)" style={inputStyle} />
-              <select name="service" style={inputStyle}>
-                <option value="" style={{ background: "#1a1a1a" }}>Service Interested In</option>
-                <option value="seo" style={{ background: "#1a1a1a" }}>SEO</option>
-                <option value="google-ads" style={{ background: "#1a1a1a" }}>Google Ads</option>
-                <option value="meta-ads" style={{ background: "#1a1a1a" }}>Meta Ads</option>
-                <option value="social-media" style={{ background: "#1a1a1a" }}>Social Media</option>
-                <option value="web-design" style={{ background: "#1a1a1a" }}>Web Design</option>
-                <option value="gmb" style={{ background: "#1a1a1a" }}>Google My Business</option>
-                <option value="other" style={{ background: "#1a1a1a" }}>Other</option>
-              </select>
-              <textarea name="message" placeholder="Tell us about your project" rows={5} defaultValue={prefill} style={{ ...inputStyle, resize: "none" as const }} required></textarea>
-              {formStatus === 'error' && <p style={{ color: "#ef4444", fontSize: "14px" }}>Something went wrong. Please try again or email us directly.</p>}
-              <button id="contact-btn" type="submit" disabled={formStatus === 'sending'} style={{ padding: "18px", borderRadius: "12px", border: "none", background: formStatus === 'sending' ? colors.subText : colors.accent, color: "white", fontWeight: "700", cursor: formStatus === 'sending' ? "not-allowed" : "pointer", fontSize: "16px", marginTop: "10px", transition: "0.3s" }}>
-                {formStatus === 'sending' ? 'Sending...' : 'Send Message'}
-              </button>
-            </form>
-          )}
+        <div style={{ background: colors.card, borderRadius: "24px", border: `1px solid ${colors.border}`, overflow: "hidden", minHeight: "600px" }}>
+          <iframe
+            src="https://app.formbricks.com/s/cmlwaszb700mhu401uo89jgmg"
+            title="Contact Form"
+            style={{
+              width: "100%",
+              height: "100%",
+              minHeight: "600px",
+              border: "none",
+              borderRadius: "24px",
+              background: "transparent"
+            }}
+          />
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
