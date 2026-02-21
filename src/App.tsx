@@ -415,6 +415,7 @@ const faqs = [
 
 // --- COMPONENTS ---
 
+// @ts-expect-error - component reserved for future use
 const Typewriter = ({ text, speed = 50 }: { text: string, speed?: number }) => {
   const [displayedText, setDisplayedText] = useState("");
   const [index, setIndex] = useState(0);
@@ -638,7 +639,7 @@ const Marquee = ({ colors }: { colors: any }) => (
   </div>
 );
 
-const AboutPage = ({ colors }: { colors: any }) => (
+const AboutPage = ({ colors, setCurrentPage }: { colors: any, setCurrentPage: any }) => (
   <div style={{ paddingTop: "120px", paddingBottom: "80px" }}>
     <section style={{ padding: "0 8% 80px", textAlign: "center" }}>
       <h1 style={{ fontSize: "56px", fontWeight: "800", marginBottom: "20px" }}>More Than Just a <span style={{ color: colors.accent }}>Marketing Agency.</span></h1>
@@ -1656,6 +1657,7 @@ const TermsOfServicePage = ({ colors }: { colors: any }) => (
 
 // --- MAIN APPLICATION ---
 
+// @ts-expect-error - component reserved for future use
 const CatMascot = ({ colors }: { colors: any }) => {
   const [targetPos, setTargetPos] = useState({ top: 0, left: 0, opacity: 0 });
   const [isFlicking, setIsFlicking] = useState(false);
@@ -1989,7 +1991,7 @@ export default function App() {
       ) : currentPage.startsWith('pricing_') ? (
         <><PricingDetail colors={colors} currentPage={currentPage} setCurrentPage={setCurrentPage} /><SiteFooter colors={colors} setCurrentPage={setCurrentPage} /></>
       ) : currentPage === 'about' ? (
-        <><AboutPage colors={colors} /><SiteFooter colors={colors} setCurrentPage={setCurrentPage} /></>
+        <><AboutPage colors={colors} setCurrentPage={setCurrentPage} /><SiteFooter colors={colors} setCurrentPage={setCurrentPage} /></>
       ) : currentPage === 'blog' ? (
         <><BlogPage colors={colors} setCurrentPage={setCurrentPage} /><SiteFooter colors={colors} setCurrentPage={setCurrentPage} /></>
       ) : currentPage.startsWith('blog_') ? (
