@@ -914,7 +914,7 @@ const ServicesPage = ({ colors, setCurrentPage }: { colors: any, setCurrentPage:
   <div style={{ paddingTop: "120px" }}>
     <section style={{ position: "relative", height: "80vh", minHeight: "600px", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", marginBottom: "100px" }}>
       {/* Video Background */}
-      <video autoPlay loop muted playsInline style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover", zIndex: 0, opacity: 0.6 }}>
+      <video autoPlay loop muted playsInline preload="metadata" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover", zIndex: 0, opacity: 0.6 }}>
         <source src={servicesHeroVideo} type="video/mp4" />
       </video>
 
@@ -948,7 +948,7 @@ const ServicesPage = ({ colors, setCurrentPage }: { colors: any, setCurrentPage:
             onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.borderColor = colors.border; }}
           >
             <div style={{ height: "200px", background: `linear-gradient(135deg, ${s.color}20, transparent)`, display: "flex", alignItems: "center", justifyContent: "center", padding: "20px" }}>
-              <img src={s.img} alt={s.title} style={{ height: "100%", width: "auto", objectFit: "contain", filter: "drop-shadow(0 5px 15px rgba(0,0,0,0.3))" }} />
+              <img src={s.img} alt={s.title} loading="lazy" style={{ height: "100%", width: "auto", objectFit: "contain", filter: "drop-shadow(0 5px 15px rgba(0,0,0,0.3))" }} />
             </div>
             <div style={{ padding: "30px", flex: 1, display: "flex", flexDirection: "column" }}>
               <h2 style={{ fontSize: "24px", fontWeight: "700", marginBottom: "15px" }}>{s.title}</h2>
@@ -1055,6 +1055,7 @@ const ServiceDetailPage = ({ colors, currentPage, setCurrentPage }: any) => {
               <img
                 src={data.img}
                 alt={data.title}
+                loading="lazy"
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
             </div>
@@ -1248,7 +1249,7 @@ const Chatbot = ({ colors, setCurrentPage }: { colors: any, setCurrentPage: any 
           } else if (lowerInput.includes("audit") || lowerInput.includes("check")) {
             botResponse = { text: "A free site audit is a great way to start! I've noted your request.", sender: 'bot', options: ["Back to Menu"] };
           } else if (lowerInput.includes("human") || lowerInput.includes("talk") || lowerInput.includes("support") || lowerInput.includes("contact")) {
-            botResponse = { text: "You can reach our team at contact@digiudaan.com or call +91-9876543210.", sender: 'bot', options: ["Back to Menu"] };
+            botResponse = { text: "You can reach our team at hello@digiudaan.com or call +91 88856 93465.", sender: 'bot', options: ["Back to Menu"] };
           } else if (lowerInput.includes("blog") || lowerInput.includes("news") || lowerInput.includes("trend")) {
             botResponse = { text: "Check out our latest insights on AI Marketing and SEO Trends in our Blog section.", sender: 'bot', options: ["Read Blog", "Back to Menu"] };
             // Add navigation logic for "Read Blog" button if needed, but for now it's just a suggestion
@@ -1276,6 +1277,7 @@ const Chatbot = ({ colors, setCurrentPage }: { colors: any, setCurrentPage: any 
         }}
         onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.1)"}
         onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
+        aria-label="Toggle Chatbot"
       >
         {isOpen ? <span style={{ fontSize: "24px" }}>✕</span> : <span style={{ fontSize: "30px" }}>💬</span>}
       </div>
@@ -1416,7 +1418,7 @@ const BlogPreview = ({ colors, setCurrentPage }: { colors: any, setCurrentPage: 
         {recentBlogs.map(([key, data]: any) => (
           <div key={key} style={{ background: colors.card, borderRadius: "24px", overflow: "hidden", border: `1px solid ${colors.border}`, display: "flex", flexDirection: "column" }}>
             <div style={{ height: "200px", overflow: "hidden" }}>
-              <img src={data.image} alt={data.title} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s" }} onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.05)"} onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"} />
+              <img src={data.image} alt={data.title} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s" }} onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.05)"} onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"} />
             </div>
             <div style={{ padding: "30px", flex: 1, display: "flex", flexDirection: "column" }}>
               <div style={{ fontSize: "12px", color: colors.accent, fontWeight: "600", marginBottom: "10px", textTransform: "uppercase" }}>{data.category}</div>
@@ -1747,7 +1749,7 @@ export default function App() {
   const colors = {
     bg: "#05010d",
     text: "#ffffff",
-    subText: "#94a3b8",
+    subText: "#cbd5e1", // Boosted contrast (was #94a3b8)
     accent: "#8b5cf6",
     card: "rgba(255,255,255,0.03)",
     border: "rgba(255,255,255,0.1)"
@@ -1756,7 +1758,6 @@ export default function App() {
   return (
     <div onMouseMove={(e) => setMousePos({ x: e.clientX, y: e.clientY })} style={{ backgroundColor: colors.bg, minHeight: "100vh", color: colors.text, fontFamily: "'Plus Jakarta Sans', sans-serif", transition: "all 0.5s ease" }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
         @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         .animated-text {
           background: linear-gradient(270deg, #fff, #a78bfa, #2dd4bf, #fff);
@@ -1778,7 +1779,7 @@ export default function App() {
           {/* --- HERO SECTION --- */}
           <section style={{ position: "relative", minHeight: "100vh", display: "flex", alignItems: "center", padding: "0 8%", overflow: "hidden" }}>
             {/* Video Background */}
-            <video autoPlay loop muted playsInline style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover", zIndex: 0, opacity: 0.6 }}>
+            <video autoPlay loop muted playsInline preload="metadata" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover", zIndex: 0, opacity: 0.6 }}>
               <source src={homeHeroVideo} type="video/mp4" />
             </video>
 
@@ -1910,7 +1911,7 @@ export default function App() {
                 >
                   {s.img && (
                     <div style={{ height: "180px", background: `linear-gradient(135deg, rgba(139,92,246,0.15), transparent)`, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", padding: "20px" }}>
-                      <img src={s.img} alt={s.title} style={{ height: "100%", width: "auto", objectFit: "contain", filter: "drop-shadow(0 5px 15px rgba(0,0,0,0.3))" }} />
+                      <img src={s.img} alt={s.title} loading="lazy" style={{ height: "100%", width: "auto", objectFit: "contain", filter: "drop-shadow(0 5px 15px rgba(0,0,0,0.3))" }} />
                     </div>
                   )}
                   <div style={{ padding: "30px" }}>
