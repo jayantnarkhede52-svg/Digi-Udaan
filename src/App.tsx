@@ -1522,7 +1522,7 @@ const ContactPage = ({ colors }: { colors: any }) => {
           <div style={{ marginBottom: "40px" }}>
             <h3 style={{ fontSize: "20px", fontWeight: "700", marginBottom: "15px", color: colors.accent }}>Contact Info</h3>
             <p style={{ display: "flex", alignItems: "center", gap: "15px", marginBottom: "15px", color: colors.subText }}><span style={{ fontSize: "20px" }}>📧</span> hello@digiudaan.com</p>
-            <p style={{ display: "flex", alignItems: "center", gap: "15px", marginBottom: "15px", color: colors.subText }}><span style={{ fontSize: "20px" }}>📱</span> +91 98765 43210</p>
+            <p style={{ display: "flex", alignItems: "center", gap: "15px", marginBottom: "15px", color: colors.subText }}><span style={{ fontSize: "20px" }}>📱</span> +91 88856 93465</p>
             <p style={{ display: "flex", alignItems: "center", gap: "15px", color: colors.subText }}><span style={{ fontSize: "20px" }}>📍</span> Bandra West, Mumbai, 400050</p>
           </div>
           <div>
@@ -1593,7 +1593,7 @@ const SiteFooter = ({ colors, setCurrentPage }: { colors: any, setCurrentPage: a
         <h4 style={{ fontWeight: "700", marginBottom: "20px", fontSize: "16px" }}>Contact</h4>
         <div style={{ display: "flex", flexDirection: "column", gap: "12px", color: colors.subText, fontSize: "15px" }}>
           <p style={{ display: "flex", alignItems: "center", gap: "10px", margin: 0 }}>📧 hello@digiudaan.com</p>
-          <p style={{ display: "flex", alignItems: "center", gap: "10px", margin: 0 }}>📱 +91 98765 43210</p>
+          <p style={{ display: "flex", alignItems: "center", gap: "10px", margin: 0 }}>📱 +91 88856 93465</p>
           <p style={{ display: "flex", alignItems: "center", gap: "10px", margin: 0 }}>📍 Bandra West, Mumbai</p>
           <p style={{ margin: 0, marginTop: "5px" }}>Mon-Fri: 10AM - 7PM</p>
           <p style={{ margin: 0 }}>Sat: 11AM - 4PM</p>
@@ -1623,7 +1623,7 @@ const PrivacyPolicyPage = ({ colors }: { colors: any }) => (
       { title: "4. Cookies", content: "Our website uses cookies to enhance your browsing experience, remember your preferences, and gather analytical data. You can control cookie settings through your browser. Disabling cookies may limit some website functionality." },
       { title: "5. Data Security", content: "We implement industry-standard security measures to protect your personal data, including encryption, secure servers, and regular security audits. However, no online transmission method is 100% secure, and we cannot guarantee absolute protection." },
       { title: "6. Your Rights", content: "You have the right to access, correct, or delete your personal data. You can opt out of marketing communications at any time. To exercise these rights, contact us at hello@digiudaan.com." },
-      { title: "7. Contact Us", content: "If you have questions about this Privacy Policy, contact us at hello@digiudaan.com or call +91 98765 43210." }
+      { title: "7. Contact Us", content: "If you have questions about this Privacy Policy, contact us at hello@digiudaan.com or call +91 88856 93465." }
     ].map((section, i) => (
       <div key={i} style={{ marginBottom: "30px" }}>
         <h2 style={{ fontSize: "22px", fontWeight: "700", marginBottom: "12px", color: colors.accent }}>{section.title}</h2>
@@ -1645,7 +1645,7 @@ const TermsOfServicePage = ({ colors }: { colors: any }) => (
       { title: "5. Intellectual Property", content: "All creative assets (designs, ad copies, content) produced during the engagement become the client's property upon full payment. Our proprietary strategies, methodologies, and tools remain our intellectual property. Clients may not share or resell our strategies to third parties." },
       { title: "6. Confidentiality", content: "Both parties agree to keep all business information, strategies, and data shared during the engagement confidential. This includes analytics data, campaign performance, pricing, and business strategies. Confidentiality obligations survive the termination of services." },
       { title: "7. Termination", content: "Either party may terminate services with 15 days written notice. Upon termination, the client is responsible for payment of all services rendered up to the termination date. We will provide all login credentials and assets upon full payment of outstanding dues." },
-      { title: "8. Contact", content: "For questions about these terms, reach us at hello@digiudaan.com or call +91 98765 43210." }
+      { title: "8. Contact", content: "For questions about these terms, reach us at hello@digiudaan.com or call +91 88856 93465." }
     ].map((section, i) => (
       <div key={i} style={{ marginBottom: "30px" }}>
         <h2 style={{ fontSize: "22px", fontWeight: "700", marginBottom: "12px", color: colors.accent }}>{section.title}</h2>
