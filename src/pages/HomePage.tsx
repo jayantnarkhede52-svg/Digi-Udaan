@@ -23,9 +23,8 @@ const HomePage = () => {
     const [spend, setSpend] = useState(25000);
 
     const calculateROI = () => {
-        const leads = Math.floor(spend / 150);
-        const revenue = leads * 0.2 * 12000;
-        return revenue.toLocaleString();
+        const revenue = spend * 3.1;
+        return Math.floor(revenue).toLocaleString();
     };
 
     return (
@@ -142,7 +141,7 @@ const HomePage = () => {
                         <div className="roi-result" style={{ padding: "40px", borderRadius: "24px", background: "rgba(139, 92, 246, 0.1)", border: `2px dashed ${colors.accent}` }}>
                             <div style={{ fontSize: "16px", textTransform: "uppercase", letterSpacing: "2px", color: colors.accent, marginBottom: "10px", fontWeight: "700" }}>Estimated Revenue</div>
                             <div className="roi-amount" style={{ fontSize: "clamp(32px, 5vw, 48px)", fontWeight: "900", color: "white" }}>₹{calculateROI()}*</div>
-                            <p style={{ fontSize: "12px", color: colors.subText, marginTop: "15px" }}>*Based on average 20% conversion rate and ₹12k service value.</p>
+                            <p style={{ fontSize: "12px", color: colors.subText, marginTop: "15px" }}>*Estimated revenue based on average market ROI performance (3.1x).</p>
                         </div>
                     </div>
                 </div>
