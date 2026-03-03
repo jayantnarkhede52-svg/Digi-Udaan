@@ -127,6 +127,19 @@ body {
 }
 
 @media (max-width: 768px) {
+
+  /* --- GLOBAL TOUCH & PERFORMANCE --- */
+  * {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* --- NAVIGATION --- */
   .desktop-nav {
     display: none !important;
   }
@@ -135,6 +148,201 @@ body {
     display: block;
   }
 
+  /* --- HERO SECTIONS --- */
+  .hero-section {
+    padding-top: 120px !important;
+    padding-bottom: 40px !important;
+    min-height: 70vh !important;
+    align-items: center !important;
+    text-align: center !important;
+    padding-left: 5% !important;
+    padding-right: 5% !important;
+  }
+
+  .hero-section h1 {
+    font-size: clamp(28px, 7vw, 42px) !important;
+    min-height: auto !important;
+    line-height: 1.2 !important;
+  }
+
+  .hero-section p {
+    font-size: 16px !important;
+    max-width: 100% !important;
+  }
+
+  .hero-section .hero-buttons {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+
+  .hero-section .hero-buttons button {
+    width: 100% !important;
+    padding: 16px 20px !important;
+  }
+
+  /* --- SECTION PADDING & TYPOGRAPHY --- */
+  section {
+    padding-left: 5% !important;
+    padding-right: 5% !important;
+  }
+
+  section h2 {
+    font-size: clamp(24px, 6vw, 36px) !important;
+    margin-bottom: 30px !important;
+  }
+
+  section h1 {
+    font-size: clamp(28px, 7vw, 42px) !important;
+  }
+
+  /* --- HOMEPAGE: STATS GRID --- */
+  .stats-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .stats-grid>div {
+    padding: 24px !important;
+  }
+
+  .stats-grid .stat-count {
+    font-size: 32px !important;
+  }
+
+  .stats-grid .stat-icon {
+    font-size: 36px !important;
+  }
+
+  /* --- HOMEPAGE: GROWTH ENGINE --- */
+  .growth-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* --- HOMEPAGE: ROI CALCULATOR --- */
+  .roi-grid {
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
+    padding: 24px !important;
+  }
+
+  .roi-grid .roi-result {
+    padding: 24px !important;
+  }
+
+  .roi-grid .roi-result .roi-amount {
+    font-size: 36px !important;
+  }
+
+  /* --- HOMEPAGE: TESTIMONIALS --- */
+  .testimonials-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  .testimonials-grid>div {
+    padding: 24px !important;
+  }
+
+  /* --- SERVICES PAGE --- */
+  .service-detail-grid {
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
+  }
+
+  .service-detail-grid .service-image {
+    height: 250px !important;
+    order: -1 !important;
+  }
+
+  .service-detail-grid .service-benefits {
+    grid-template-columns: 1fr !important;
+  }
+
+  .services-list {
+    gap: 60px !important;
+  }
+
+  /* --- PRICING PAGE --- */
+  .pricing-tabs {
+    gap: 8px !important;
+    margin-bottom: 40px !important;
+  }
+
+  .pricing-tabs button {
+    padding: 10px 16px !important;
+    font-size: 12px !important;
+  }
+
+  .pricing-cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+    max-width: 100% !important;
+  }
+
+  .pricing-cards-grid>div {
+    padding: 24px !important;
+    transform: scale(1) !important;
+    border-width: 1px !important;
+  }
+
+  .pricing-cards-grid h3 {
+    font-size: 20px !important;
+  }
+
+  .pricing-cards-grid .price {
+    font-size: 28px !important;
+  }
+
+  /* --- CONTACT PAGE --- */
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+    padding-top: 80px !important;
+  }
+
+  .contact-grid h1 {
+    font-size: 36px !important;
+  }
+
+  .contact-form {
+    padding: 24px !important;
+  }
+
+  .contact-form .name-email-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    font-size: 16px !important;
+    /* Prevents iOS zoom on focus */
+    padding: 14px !important;
+  }
+
+  /* --- ABOUT PAGE --- */
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+
+  .about-section {
+    padding-top: 80px !important;
+  }
+
+  /* --- BLOG PAGE --- */
+  .blog-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  .blog-grid h1 {
+    font-size: 36px !important;
+    margin-bottom: 30px !important;
+  }
+
+  /* --- FOOTER --- */
   .footer-grid {
     grid-template-columns: 1fr !important;
     text-align: center;
@@ -148,5 +356,40 @@ body {
   .footer-bottom {
     flex-direction: column !important;
     gap: 10px !important;
+    text-align: center;
+  }
+
+  /* --- CHATBOT --- */
+  .chatbot-window {
+    left: 10px !important;
+    right: 10px !important;
+    bottom: 80px !important;
+    width: auto !important;
+    height: 70vh !important;
+    max-height: 500px !important;
+  }
+
+  .chatbot-trigger {
+    bottom: 20px !important;
+    right: 20px !important;
+    width: 50px !important;
+    height: 50px !important;
+  }
+
+  /* --- CAT MASCOT: HIDE ON MOBILE --- */
+  .cat-mascot {
+    display: none !important;
+  }
+
+  /* --- MARQUEE --- */
+  .marquee-content span {
+    font-size: 16px !important;
+    margin: 0 20px !important;
+  }
+
+  /* --- GENERAL BUTTONS --- */
+  button {
+    min-height: 44px;
+    min-width: 44px;
   }
 }
