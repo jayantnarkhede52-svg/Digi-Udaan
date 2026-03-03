@@ -1,0 +1,21 @@
+# Tasks
+
+- [x] Identify project type and dev script
+- [x] Start Vite dev server <!-- id: 0 -->
+- [x] Open preview in browser <!-- id: 1 -->
+- [x] Update slider range <!-- id: 4 -->
+- [x] Resolve mobile hero collision <!-- id: 5 -->
+- [x] Verify mobile layout <!-- id: 6 -->
+- [x] Verify preview is working <!-- id: 2 -->
+- [x] Provide walkthrough for previous tasks <!-- id: 3 -->
+- [x] Refactor Digi Udaan website into reusable components
+- [x] Update package prices to ₹6,000, ₹9,000, and ₹12,000
+- [x] Sync ROI calculator and Chatbot with new pricing
+- [x] Center-align hero sections for Services and Pricing pages
+- [x] Fix mobile hero/header overlapping issue
+- [x] Extract pricing and site data into separate modules
+- [x] Create Chatbot and CatMascot components
+- [x] Resolve all TypeScript and build errors
+- [x] Verify upgrade and performance <!-- id: 12 -->
+- [x] Comprehensive mobile optimization (all pages & components)
+- [x] Push all changes to GitHub branch `main`
