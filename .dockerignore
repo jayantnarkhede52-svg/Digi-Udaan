@@ -1,0 +1,8 @@
+.git
+.agents
+node_modules
+dist
+ts_errors.txt
+temp_icons.html
+*.md
+!README.md
