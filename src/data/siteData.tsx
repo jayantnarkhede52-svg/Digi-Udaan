@@ -11,54 +11,62 @@ import socialMediaImg from "../assets/social-media-service.jpg";
 import webDevImg from "../assets/web-dev-service.jpg";
 
 export const servicesData = [
-    { title: "Google SEO", icon: <img src={seoIcon} alt="SEO" style={{ width: "60px", height: "60px" }} />, gist: "We optimize your site's DNA to rank higher and stay there.", img: seoServiceImg, page: "service_seo" },
-    { title: "Google Ads", icon: <img src={adsIcon} alt="Ads" style={{ width: "60px", height: "60px" }} />, gist: "High-intent campaigns designed to maximize leads and ROI.", img: googleAdsImg, page: "service_ads" },
-    { title: "Meta Ads", icon: <img src={metaIcon} alt="Meta" style={{ width: "60px", height: "60px" }} />, gist: "Thumb-stopping visuals that turn likes into loyal customers.", img: socialMediaImg, page: "service_social" },
-    { title: "Social Media", icon: <img src={socialIcon} alt="Social" style={{ width: "60px", height: "60px" }} />, gist: "Humanized content that keeps your community engaged 24/7.", img: socialMediaImg, page: "service_social" },
-    { title: "GMB Local", icon: <img src={gmbIcon} alt="GMB" style={{ width: "60px", height: "60px" }} />, gist: "Optimize your map presence to dominate 'near me' searches.", img: gmbServiceImg, page: "service_gmb" },
-    { title: "React Dev", icon: <img src={reactIcon} alt="React" style={{ width: "60px", height: "60px" }} />, gist: "Sleek, fast, and SEO-friendly websites built for performance.", img: webDevImg, page: "service_web" }
+    { title: "Google SEO", icon: <img src={seoIcon} alt="SEO" style={{ width: "60px", height: "60px" }} />, gist: "We help your website show up when people search for what you do.", img: seoServiceImg, page: "google-seo" },
+    { title: "Google Ads", icon: <img src={adsIcon} alt="Ads" style={{ width: "60px", height: "60px" }} />, gist: "We run ads that bring in real calls and inquiries, not just clicks.", img: googleAdsImg, page: "google-ads" },
+    { title: "Meta Ads", icon: <img src={metaIcon} alt="Meta" style={{ width: "60px", height: "60px" }} />, gist: "Eye-catching ads on Instagram & Facebook that actually bring customers.", img: socialMediaImg, page: "meta-ads" },
+    { title: "Social Media", icon: <img src={socialIcon} alt="Social" style={{ width: "60px", height: "60px" }} />, gist: "We post, design, and manage your social media so you don't have to.", img: socialMediaImg, page: "social-media" },
+    { title: "GMB Local", icon: <img src={gmbIcon} alt="GMB" style={{ width: "60px", height: "60px" }} />, gist: "We make sure you show up on Google Maps when people search nearby.", img: gmbServiceImg, page: "gmb" },
+    { title: "React Dev", icon: <img src={reactIcon} alt="React" style={{ width: "60px", height: "60px" }} />, gist: "Good-looking, super fast websites that work great on phones.", img: webDevImg, page: "web-development" }
 ];
 
 export const detailedServicesData: any = {
-    "service_seo": {
+    "google-seo": {
         title: "Search Engine Optimization (SEO)",
-        desc: "We don't just optimize for algorithms; we optimize for people who are searching for exactly what you offer. Our approach goes beyond basic keyword stuffing. We build a comprehensive strategy that includes technical audits to speed up your site, high-quality content that establishes your authority, and a backlink profile that signals trust to Google. The result? Sustainable, long-term organic traffic that doesn't disappear when you stop paying for ads.",
-        tags: ["On-Page Excellence", "Technical SEO Audits", "Content Strategy", "Authority Building"],
+        desc: "We help your website rank higher on Google so more people find you. We fix the technical stuff, write helpful content, and build your site's reputation online — simple as that.",
+        tags: ["On-Page Fixes", "Technical Cleanup", "Content Writing", "Reputation Building"],
         color: "#22c55e",
         img: seoServiceImg,
-        benefits: ["Higher Rankings", "More Organic Traffic", "Better User Experience", "Long-term ROI"]
+        benefits: ["Higher Rankings", "More Website Visitors", "Better Experience", "Long-term Results"]
     },
-    "service_gmb": {
+    "gmb": {
         title: "Google My Business (GMB) Optimization",
-        desc: "For local businesses, your GMB profile is your new storefront. We take complete ownership of your presence on Google Maps. From setting up and verifying your profile to managing reviews and posting weekly updates, we ensure you dominate local search results. We help you turn 'near me' searches into phone calls and foot traffic, keeping your business visible and trustworthy in your local community.",
-        tags: ["Profile Setup & Verification", "Review Management", "Weekly Posts & Updates", "Local SEO Dominance"],
+        desc: "When someone nearby searches for your type of business, we make sure you show up first on Google Maps. We handle your profile, respond to reviews, and keep it fresh every week.",
+        tags: ["Profile Setup", "Review Replies", "Weekly Updates", "Local Visibility"],
         color: "#f97316",
         img: gmbServiceImg,
-        benefits: ["Local Visibility", "More Walk-ins", "Trust Building", "Direct Calls"]
+        benefits: ["Show Up Locally", "More Walk-ins", "Build Trust", "Get More Calls"]
     },
-    "service_ads": {
-        title: "Performance Marketing (Google Ads)",
-        desc: "Stop hoping for leads and start demanding them. Our Google Ads campaigns are precision-engineered to capture high-intent traffic—people who are ready to buy right now. We manage your budget like it's our own, constantly refining keywords, ad copy, and bidding strategies to lower your cost-per-acquisition. Whether it's Search, Display, or Shopping, we ensure every rupee spent contributes to your bottom line.",
-        tags: ["Search & Display Ads", "Conversion Tracking", "ROI-Focused Bidding", "Negative Keyword Management"],
+    "google-ads": {
+        title: "Google Ads Management",
+        desc: "We run Google Ads that bring in real customers — not just random clicks. We pick the right keywords, write clear ads, and watch your budget carefully so you get the most out of every rupee.",
+        tags: ["Search Ads", "Call Tracking", "Smart Budgeting", "Keyword Research"],
         color: "#ef4444",
         img: googleAdsImg,
-        benefits: ["Instant Traffic", "High Intent Leads", "Measurable ROI", "Scalable Growth"]
+        benefits: ["Quick Results", "Real Customers", "Clear Reports", "Grow Steadily"]
     },
-    "service_social": {
-        title: "Social Media Branding & Management",
-        desc: "Your brand needs to be more than just a logo; it needs a personality. We help you build a loyal community on platforms like Instagram and Facebook. Our team handles everything from crafting a stunning visual identity to writing engaging captions that spark conversations. We create content that resonates with your audience, turning passive scrollers into active followers and brand advocates.",
-        tags: ["Visual Identity Design", "Community Engagement", "Reels & Content Creation", "Caption Writing"],
+    "social-media": {
+        title: "Social Media Management",
+        desc: "We take care of your Instagram and Facebook — from designing good-looking posts to writing captions and replying to comments. You focus on your business, we'll handle the social media.",
+        tags: ["Post Design", "Community Building", "Reels & Videos", "Caption Writing"],
         color: "#eab308",
         img: socialMediaImg,
-        benefits: ["Brand Awareness", "Community Loyalty", "Direct Engagement", "Viral Potential"]
+        benefits: ["Get Noticed", "Build a Following", "Talk to Customers", "Grow Your Brand"]
     },
-    "service_web": {
+    "web-development": {
         title: "Web Design & Development",
-        desc: "Your website is often the first interaction a customer has with your business. Make it count. We design and build custom websites that are not only visually striking but also lightning-fast and mobile-responsive. We focus on user experience (UX) to guide visitors seamlessly from their first click to a final purchase or inquiry. Your site will be your 24/7 digital salesperson, working tirelessly to convert traffic into leads.",
-        tags: ["Custom UI/UX Design", "Mobile-first Development", "Speed Optimization", "Conversion Rate Optimization"],
+        desc: "We build clean, modern websites that look great on phones and load fast. Your website will help customers understand what you do and make it easy for them to contact you or buy.",
+        tags: ["Custom Design", "Mobile-Friendly", "Fast Loading", "Easy Navigation"],
         color: "#3b82f6",
         img: webDevImg,
-        benefits: ["First Impressions", "24/7 Sales", "Mobile Ready", "Conversion Machine"]
+        benefits: ["Great First Impression", "Works on All Phones", "Easy to Contact You", "Brings in Leads"]
+    },
+    "meta-ads": {
+        title: "Meta Ads (Facebook & Instagram)",
+        desc: "We run ads on Instagram and Facebook that actually bring customers. We target the right audience and create eye-catching visuals that grab attention.",
+        tags: ["Targeted Ads", "Visual Creation", "Brand Awareness", "Ad Optimization"],
+        color: "#eab308",
+        img: socialMediaImg,
+        benefits: ["Reach Buyers", "Social Presence", "High Engagement", "Fast Scaling"]
     }
 };
 
@@ -69,12 +77,12 @@ export const quizQuestions = [
 ];
 
 export const whyChooseUs = [
-    { title: "Results Over Likes", desc: "We focus on leads and results, not just likes and traffic." },
-    { title: "Transparent Process", desc: "Simple and transparent working process." },
-    { title: "No Jargon", desc: "Clear communication with no technical confusion." },
-    { title: "Tailored Strategy", desc: "Strategies tailored for your business goals." },
-    { title: "Honest Pricing", desc: "Honest pricing with no hidden charges." },
-    { title: "Growth Partner", desc: "We work like a growth partner, not just a service provider." }
+    { title: "We Care About Results", desc: "We don't chase likes. We chase calls, leads, and real business growth." },
+    { title: "No Surprises", desc: "You'll always know what we're doing and why. No confusing reports." },
+    { title: "We Speak Your Language", desc: "No fancy marketing words. We explain things simply and clearly." },
+    { title: "Made for You", desc: "Every plan is built around your specific business and budget." },
+    { title: "Fair Pricing", desc: "What you see is what you pay. No hidden fees, ever." },
+    { title: "We're On Your Team", desc: "We think of your business like our own. Your win is our win." }
 ];
 
 export const whoBenefits = [
@@ -88,21 +96,25 @@ export const whoBenefits = [
 export const marqueeKeywords = ["GROWTH", "STRATEGY", "ROI", "LEADS", "BRANDING", "SEO", "PPC", "DIGITAL", "SCALE", "REVENUE", "MUMBAI"];
 
 export const testimonials = [
-    { name: "Rajesh K.", role: "CEO, TechFlow", quote: "Digi Udaan didn't just run ads; they built our entire sales pipeline. Revenue up 300% in 6 months." },
-    { name: "Priya M.", role: "Founder, Glow Skincare", quote: "Finally an agency that understands brand aesthetics AND performance. Highly recommended!" },
-    { name: "Amit S.", role: "Director, Urban Homes", quote: "Their SEO strategy is top-notch. We rank #1 for all our major keywords now." }
+    { name: "Rajesh K.", role: "CEO, TechFlow", quote: "These guys actually care about results. Our business grew 3x in 6 months — I still can't believe it." },
+    { name: "Priya M.", role: "Founder, Glow Skincare", quote: "They understand both good design and getting sales. Best decision we made for our brand." },
+    { name: "Amit S.", role: "Director, Urban Homes", quote: "We used to be nowhere on Google. Now we show up first. The phone hasn't stopped ringing." }
 ];
 
 export const processSteps = [
-    { title: "Discovery", desc: "We deep dive into your business, competitors, and goals." },
-    { title: "Strategy", desc: "We craft a custom roadmap to hit your revenue targets." },
-    { title: "Execution", desc: "Our team launches campaigns, builds assets, and drives traffic." },
-    { title: "Optimization", desc: "We constantly tweak and test to lower costs and increase leads." }
+    { title: "Discovery", desc: "First, we sit down and understand your business, your customers, and what you want to achieve." },
+    { title: "Strategy", desc: "Then we create a clear plan — what we'll do, when, and what results to expect." },
+    { title: "Execution", desc: "Our team gets to work — running ads, posting content, building your website, whatever's needed." },
+    { title: "Optimization", desc: "We keep an eye on the numbers and make things better every week so your money works harder." }
 ];
 
 export const faqs = [
-    { q: "Do you guarantee results?", a: "We guarantee our work and strategy. While no one can control algorithms, our track record shows consistent growth for 95% of our clients." },
-    { q: "What is your minimum contract period?", a: "We prefer 3-month contracts to show real results, but we also offer month-to-month options for specific services." },
-    { q: "How fast will I see leads?", a: "With Google/Meta Ads, you can see leads in 48 hours. SEO takes 3-6 months to gain significant traction." },
-    { q: "Do you work with small businesses?", a: "Yes! We have specific packages designed for startups and local businesses." }
+    { q: "Do you guarantee results?", a: "Honestly, no one can guarantee exact numbers — anyone who does is not being truthful. But we've helped 95% of our clients grow, and we'll show you exactly what we're doing every step of the way." },
+    { q: "How long do I need to sign up for?", a: "We usually suggest 3 months so we can show you real results. But if you'd rather go month-by-month, that works too." },
+    { q: "How soon will I start getting leads?", a: "With ads, you can start getting calls within 2 days. SEO takes longer — usually 3 to 6 months — but the results last much longer." },
+    { q: "Is this only for big companies?", a: "Not at all! We love working with small businesses and startups. We have packages made just for you." }
 ];
+
+import { blogData } from './blogData';
+
+export const latestBlogs = blogData;

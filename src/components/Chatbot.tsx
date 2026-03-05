@@ -34,18 +34,64 @@ const Chatbot = () => {
     };
 
     const handleOptionClick = (option: string) => {
-        setMessages([...messages, { text: option, sender: 'user' }]);
+        setMessages(prev => [...prev, { text: option, sender: 'user' }]);
         setIsTyping(true);
 
         setTimeout(() => {
-            let botResponse: any = { text: "", sender: 'bot', options: [] };
-            // botResponse logic
+            let botResponse: ChatMessage = { text: "", sender: 'bot', options: [] };
+
             switch (option) {
                 case "Explore Services":
-                    botResponse = { text: "Here is our full range of services to help you grow:", sender: 'bot', options: ["Google SEO", "Google Ads", "Meta Ads", "GMB Optimization", "Social Media Handling", "Website Designing"] };
+                    botResponse = {
+                        text: "Great! To help you better, what is your main goal right now?",
+                        sender: 'bot',
+                        options: ["Scale sales with ads", "Get more local customers", "Improve my website", "Long term SEO growth", "Manage my social media"]
+                    };
+                    break;
+                case "Scale sales with ads":
+                    botResponse = {
+                        text: "Ads are a great way to grow fast! Which platform do you prefer?",
+                        sender: 'bot',
+                        options: ["Google Ads", "Meta Ads", "Help me choose"]
+                    };
+                    break;
+                case "Google Ads":
+                    botResponse = { text: "Redirecting you to our Google Ads service page...", sender: 'bot', options: ["Back to Menu"] };
+                    navigate('/services/google-ads');
+                    break;
+                case "Meta Ads":
+                    botResponse = { text: "Taking you to our Meta Ads (FB & Insta) service page...", sender: 'bot', options: ["Back to Menu"] };
+                    navigate('/services/meta-ads');
+                    break;
+                case "Help me choose":
+                    botResponse = { text: "No problem! Google Ads are best for people searching for you, while Meta ads are great for building brand awareness. Check out both on our services page.", sender: 'bot', options: ["See All Services", "Back to Menu"] };
+                    break;
+                case "Get more local customers":
+                    botResponse = { text: "Local reach is key! Navigating to our GMB & Local SEO page.", sender: 'bot', options: ["Back to Menu"] };
+                    navigate('/services/gmb');
+                    break;
+                case "Improve my website":
+                    botResponse = { text: "A fast, clean website is the foundation. Taking you to Web Development.", sender: 'bot', options: ["Back to Menu"] };
+                    navigate('/services/web-development');
+                    break;
+                case "Long term SEO growth":
+                    botResponse = { text: "SEO is a marathon, not a sprint. Let's look at our SEO services.", sender: 'bot', options: ["Back to Menu"] };
+                    navigate('/services/google-seo');
+                    break;
+                case "Manage my social media":
+                    botResponse = { text: "Consistency is everything on social. Heading to Social Media Management.", sender: 'bot', options: ["Back to Menu"] };
+                    navigate('/services/social-media');
+                    break;
+                case "See All Services":
+                    navigate('/services');
+                    botResponse = { text: "Here are all our services.", sender: 'bot', options: ["Back to Menu"] };
                     break;
                 case "Check Pricing":
-                    botResponse = { text: "Here is our standard pricing range:\n\n• SEO: ₹6,000 - ₹12,000/mo\n• Ads Fee: ₹6,000 - ₹18,000/mo\n• Social Media: ₹5,500/mo\n• Web Design: ₹6,500 - ₹30,000", sender: 'bot', options: ["SEO Packages", "Ads Packages", "Web Design Packages", "Social Media Packages"] };
+                    botResponse = { text: "Here is our standard pricing range:\n• SEO: ₹6,500 - ₹12,000/mo\n• Ads Fee: ₹6,500 - ₹18,000/mo\n• Social Media: ₹5,500/mo\n• Web Design: ₹6,500 - ₹30,000", sender: 'bot', options: ["View Pricing Page", "Back to Menu"] };
+                    break;
+                case "View Pricing Page":
+                    navigate('/pricing');
+                    botResponse = { text: "I've taken you to our pricing page.", sender: 'bot', options: ["Back to Menu"] };
                     break;
                 case "Book a Free Audit":
                     botResponse = { text: "Excellent choice! A site audit is the first step to growth. I'll take you to the contact page.", sender: 'bot', options: ["Back to Menu"] };
@@ -57,17 +103,13 @@ const Chatbot = () => {
                 case "Back to Menu":
                     botResponse = { text: "How else can I help you?", sender: 'bot', options: ["Explore Services", "Check Pricing", "Book a Free Audit", "Talk to a Human"] };
                     break;
-                case "SEO Packages":
-                    navigate('/pricing');
-                    botResponse = { text: "I've taken you to our pricing page.", sender: 'bot', options: ["Back to Menu"] };
-                    break;
                 default:
                     botResponse = { text: "I'm still learning! You can try asking about 'price', 'seo', or 'contact'.", sender: 'bot', options: ["Back to Menu"] };
             }
 
-            setMessages([...messages, botResponse]);
+            setMessages(prev => [...prev, botResponse]);
             setIsTyping(false);
-        }, 1000);
+        }, 800);
     };
 
     return (
