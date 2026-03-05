@@ -222,15 +222,15 @@ const HomePage = () => {
                         <button
                             onClick={() => navigate('/blog')}
                             style={{ padding: "14px 28px", borderRadius: "100px", border: `1px solid ${colors.accent}`, background: "transparent", color: colors.accent, fontWeight: "700", cursor: "pointer", transition: "all 0.3s" }}
-                            onMouseOver={(e) => { e.currentTarget.style.background = colors.accent; e.currentTarget.style.color = "white"; }}
-                            onMouseOut={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = colors.accent; }}
+                            onMouseOver={(e: React.MouseEvent<HTMLButtonElement>) => { e.currentTarget.style.background = colors.accent; e.currentTarget.style.color = "white"; }}
+                            onMouseOut={(e: React.MouseEvent<HTMLButtonElement>) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = colors.accent; }}
                         >
                             Read Full Blog →
                         </button>
                     </div>
 
                     <div className="blog-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "30px" }}>
-                        {latestBlogs.map((blog, i) => (
+                        {latestBlogs.map((blog: any, i: number) => (
                             <div key={i} onClick={() => navigate(`/blog/${blog.slug}`)} style={{ background: colors.bg, borderRadius: "20px", overflow: "hidden", border: `1px solid ${colors.border}`, transition: "transform 0.3s", cursor: "pointer" }}>
                                 <div style={{ height: "180px", background: `linear-gradient(45deg, ${colors.bg}, ${colors.accent})`, opacity: 0.3 }} />
                                 <div style={{ padding: "24px" }}>

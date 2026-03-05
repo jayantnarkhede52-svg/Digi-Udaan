@@ -9,6 +9,7 @@ import gmbServiceImg from "../assets/gmb-service.jpg";
 import googleAdsImg from "../assets/google-ads-service.jpg";
 import socialMediaImg from "../assets/social-media-service.jpg";
 import webDevImg from "../assets/web-dev-service.jpg";
+import { blogData } from './blogData';
 
 export const servicesData = [
     { title: "Google SEO", icon: <img src={seoIcon} alt="SEO" style={{ width: "60px", height: "60px" }} />, gist: "We help your website show up when people search for what you do.", img: seoServiceImg, page: "google-seo" },
@@ -115,6 +116,5 @@ export const faqs = [
     { q: "Is this only for big companies?", a: "Not at all! We love working with small businesses and startups. We have packages made just for you." }
 ];
 
-import { blogData } from './blogData';
 
 export const latestBlogs = blogData;
