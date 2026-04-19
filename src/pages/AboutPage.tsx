@@ -5,12 +5,12 @@ import { whyChooseUs, whoBenefits } from '../data/siteData';
 const AboutPage = () => {
     return (
         <>
-            <SEO title="About Us" description="We are a team of digital growth experts dedicated to helping Mumbai businesses scale with pride." />
+            <SEO title="About Us" description="We're a small team in Mumbai that helps local businesses grow online. Simple, honest, and always focused on results." />
 
             <section className="about-section" style={{ padding: "100px 8%", textAlign: "center", maxWidth: "1000px", margin: "0 auto" }}>
-                <h1 style={{ fontSize: "clamp(32px, 5vw, 56px)", fontWeight: "800", marginBottom: "40px" }}>Scaling Mumbai with <span style={{ color: colors.accent }}>Pride</span></h1>
+                <h1 style={{ fontSize: "clamp(32px, 5vw, 56px)", fontWeight: "800", marginBottom: "40px" }}>Helping Mumbai Businesses <span style={{ color: colors.accent }}>Grow Online</span></h1>
                 <p style={{ fontSize: "clamp(16px, 2.5vw, 20px)", color: colors.subText, lineHeight: "1.8", marginBottom: "60px" }}>
-                    We started Digi Udaan with a simple mission: to give small and medium businesses in Mumbai the same digital firepower as the big corporations. No fluff, no jargon—just pure, data-driven growth.
+                    We're a small team that genuinely loves helping local businesses get more customers through the internet. No confusing words, no over-the-top promises. Just honest work that gets you real results.
                 </p>
 
                 <div className="about-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", textAlign: "left" }}>

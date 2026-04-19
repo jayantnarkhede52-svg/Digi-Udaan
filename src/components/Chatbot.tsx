@@ -7,6 +7,7 @@ interface ChatMessage {
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { colors } from '../data/colors';
+import { api } from '../config/api';
 
 const Chatbot = () => {
     const navigate = useNavigate();
@@ -95,10 +96,12 @@ const Chatbot = () => {
                     break;
                 case "Book a Free Audit":
                     botResponse = { text: "Excellent choice! A site audit is the first step to growth. I'll take you to the contact page.", sender: 'bot', options: ["Back to Menu"] };
+                    api.createLead({ source: 'chatbot', name: 'Chatbot User', message: 'Requested a free site audit' });
                     navigate('/contact');
                     break;
                 case "Talk to a Human":
                     botResponse = { text: "You can reach our team at hello@digiudaan.com or call +91 88856 93465.", sender: 'bot', options: ["Back to Menu"] };
+                    api.createLead({ source: 'chatbot', name: 'Chatbot User', message: 'Wants to talk to a human' });
                     break;
                 case "Back to Menu":
                     botResponse = { text: "How else can I help you?", sender: 'bot', options: ["Explore Services", "Check Pricing", "Book a Free Audit", "Talk to a Human"] };

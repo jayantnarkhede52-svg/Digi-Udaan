@@ -1,8 +1,47 @@
+import { useState, useEffect } from 'react';
 import SEO from '../components/SEO';
 import { colors } from '../data/colors';
+import { api } from '../config/api';
 
 const ContactPage = () => {
-    const prefill = (window as any).__contactPrefill || "";
+    const [form, setForm] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        service: '',
+        message: typeof window !== 'undefined' ? (window.__contactPrefill || '') : ''
+    });
+    const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+
+    useEffect(() => {
+        // Clear prefill after it's been used for initial state
+        if (typeof window !== 'undefined' && window.__contactPrefill) {
+            window.__contactPrefill = undefined;
+        }
+    }, []);
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setStatus('sending');
+        try {
+            const res = await api.submitContact(form);
+            if (res.id) {
+                setStatus('success');
+                setForm({ name: '', email: '', phone: '', service: '', message: '' });
+            } else {
+                setStatus('error');
+            }
+        } catch {
+            setStatus('error');
+        }
+    };
+
+    const inputStyle = {
+        width: '100%', padding: '16px', borderRadius: '14px',
+        border: `1px solid ${colors.border}`, background: 'rgba(255,255,255,0.05)',
+        color: 'white', fontSize: '15px', outline: 'none', boxSizing: 'border-box' as const,
+        transition: 'border-color 0.3s',
+    };
 
     return (
         <>
@@ -39,33 +78,62 @@ const ContactPage = () => {
                 </div>
 
                 <div className="contact-form" style={{ background: colors.card, padding: "40px", borderRadius: "24px", border: `1px solid ${colors.border}` }}>
-                    <form style={{ display: "grid", gap: "20px" }} onSubmit={(e) => e.preventDefault()}>
-                        <div className="name-email-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
-                            <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                                <label style={{ fontSize: "14px", fontWeight: "600", color: colors.subText }}>Full Name</label>
-                                <input type="text" placeholder="John Doe" style={{ background: "rgba(255,255,255,0.05)", border: `1px solid ${colors.border}`, borderRadius: "12px", padding: "14px", color: "white", outline: "none", fontSize: "16px" }} />
+                    {status === 'success' ? (
+                        <div style={{ textAlign: 'center', padding: '60px 20px' }}>
+                            <div style={{ fontSize: '64px', marginBottom: '20px' }}>✅</div>
+                            <h2 style={{ fontWeight: '800', fontSize: '24px', marginBottom: '12px' }}>Message Sent!</h2>
+                            <p style={{ color: colors.subText, marginBottom: '24px' }}>We'll get back to you within 24 hours.</p>
+                            <button onClick={() => setStatus('idle')} style={{ padding: '12px 28px', borderRadius: '100px', border: `1px solid ${colors.accent}`, background: 'transparent', color: colors.accent, fontWeight: '700', cursor: 'pointer' }}>Send Another Message</button>
+                        </div>
+                    ) : (
+                        <form onSubmit={handleSubmit}>
+                            <h2 style={{ fontWeight: '800', fontSize: '22px', marginBottom: '28px' }}>Send us a message</h2>
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+                                <input
+                                    type="text" placeholder="Your Name *" required
+                                    value={form.name} onChange={e => setForm({ ...form, name: e.target.value })}
+                                    style={inputStyle}
+                                />
+                                <input
+                                    type="email" placeholder="Email Address *" required
+                                    value={form.email} onChange={e => setForm({ ...form, email: e.target.value })}
+                                    style={inputStyle}
+                                />
                             </div>
-                            <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                                <label style={{ fontSize: "14px", fontWeight: "600", color: colors.subText }}>Email Address</label>
-                                <input type="email" placeholder="john@example.com" style={{ background: "rgba(255,255,255,0.05)", border: `1px solid ${colors.border}`, borderRadius: "12px", padding: "14px", color: "white", outline: "none", fontSize: "16px" }} />
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+                                <input
+                                    type="tel" placeholder="Phone Number"
+                                    value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })}
+                                    style={inputStyle}
+                                />
+                                <select
+                                    value={form.service} onChange={e => setForm({ ...form, service: e.target.value })}
+                                    style={{ ...inputStyle, cursor: 'pointer', appearance: 'none' }}
+                                >
+                                    <option value="" style={{ background: colors.bg }}>Select Service</option>
+                                    <option value="SEO" style={{ background: colors.bg }}>Google SEO</option>
+                                    <option value="Google Ads" style={{ background: colors.bg }}>Google Ads</option>
+                                    <option value="Meta Ads" style={{ background: colors.bg }}>Meta Ads</option>
+                                    <option value="Social Media" style={{ background: colors.bg }}>Social Media</option>
+                                    <option value="Web Development" style={{ background: colors.bg }}>Web Development</option>
+                                    <option value="GMB" style={{ background: colors.bg }}>GMB Local</option>
+                                    <option value="Other" style={{ background: colors.bg }}>Other</option>
+                                </select>
                             </div>
-                        </div>
-                        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                            <label style={{ fontSize: "14px", fontWeight: "600", color: colors.subText }}>Interested In</label>
-                            <select style={{ background: "rgba(255,255,255,0.05)", border: `1px solid ${colors.border}`, borderRadius: "12px", padding: "14px", color: "white", outline: "none", appearance: "none", fontSize: "16px" }}>
-                                <option>SEO Services</option>
-                                <option>Google Ads</option>
-                                <option>Meta Ads</option>
-                                <option>Social Media</option>
-                                <option>Web Development</option>
-                            </select>
-                        </div>
-                        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                            <label style={{ fontSize: "14px", fontWeight: "600", color: colors.subText }}>Message</label>
-                            <textarea placeholder="How can we help you grow?" defaultValue={prefill} style={{ background: "rgba(255,255,255,0.05)", border: `1px solid ${colors.border}`, borderRadius: "12px", padding: "14px", color: "white", outline: "none", minHeight: "120px", fontSize: "16px", resize: "vertical" }} />
-                        </div>
-                        <button style={{ background: colors.accent, color: "white", border: "none", borderRadius: "12px", padding: "16px", fontSize: "16px", fontWeight: "800", cursor: "pointer", boxShadow: "0 10px 25px rgba(139, 92, 246, 0.3)" }}>Initialize Takeoff</button>
-                    </form>
+                            <textarea
+                                placeholder="Tell us about your project *" required rows={5}
+                                value={form.message} onChange={e => setForm({ ...form, message: e.target.value })}
+                                style={{ ...inputStyle, resize: 'vertical', marginBottom: '24px' }}
+                            />
+                            {status === 'error' && <p style={{ color: '#ef4444', marginBottom: '16px', fontSize: '14px' }}>Something went wrong. Please try again.</p>}
+                            <button
+                                type="submit" disabled={status === 'sending'}
+                                style={{ width: '100%', padding: '16px', borderRadius: '100px', border: 'none', background: colors.accent, color: 'white', fontWeight: '700', fontSize: '16px', cursor: status === 'sending' ? 'wait' : 'pointer', opacity: status === 'sending' ? 0.7 : 1 }}
+                            >
+                                {status === 'sending' ? 'Sending...' : 'Send Message →'}
+                            </button>
+                        </form>
+                    )}
                 </div>
             </section>
         </>

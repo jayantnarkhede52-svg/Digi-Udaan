@@ -5,7 +5,9 @@ import icon4 from "../assets/icons/icon4.png";
 import gmbNewIcon from "../assets/icons/gmb-new.png";
 import webNewIcon from "../assets/icons/web-new.png";
 
-export const pricingData: any = {
+import type { PricingCategory } from "../types";
+
+export const pricingData: Record<string, PricingCategory> = {
     pricing_seo: {
         title: "Google SEO",
         icon: seoNewIcon,
@@ -14,7 +16,7 @@ export const pricingData: any = {
         pkgs: [
             {
                 name: "SEO Starter (Local Visibility)",
-                price: "₹6,000/mo",
+                price: "₹5,000/mo",
                 details: [
                     "Website SEO Audit (Basic)",
                     "Keyword Research (10–12 Local Keywords)",
@@ -30,7 +32,7 @@ export const pricingData: any = {
             },
             {
                 name: "SEO Growth (Business Expansion)",
-                price: "₹9,000/mo",
+                price: "₹8,000/mo",
                 details: [
                     "Everything in Starter +",
                     "Detailed SEO Audit (Technical + Content)",
@@ -47,7 +49,7 @@ export const pricingData: any = {
             },
             {
                 name: "SEO Authority (Brand & Leads)",
-                price: "₹12,000/mo",
+                price: "₹11,000/mo",
                 details: [
                     "Everything in Growth +",
                     "Advanced Competitor Analysis",
@@ -108,7 +110,7 @@ export const pricingData: any = {
                 name: "Scale Ads Package",
                 price: "₹12,000/mo",
                 details: [
-                    "Google Ads Budget: ₹10,500 (paid to Google)",
+                    "Google Ads Budget: ₹9,500 (paid to Google)",
                     "Full-Funnel Google Ads Strategy",
                     "Multiple Campaigns & Ad Groups",
                     "Search + Display + Remarketing Ads",
@@ -212,7 +214,7 @@ export const pricingData: any = {
         pkgs: [
             {
                 name: "Active Local Growth Plan",
-                price: "₹5,000/mo",
+                price: "₹3,000/mo",
                 details: [
                     "Includes: Profile Setup & Verification Support",
                     "Business Info Optimization (Name, Category, Area)",
@@ -236,20 +238,23 @@ export const pricingData: any = {
         pkgs: [
             {
                 name: "Single Page Package",
+                badge: "Static Website",
                 price: "₹6,500",
                 details: [
-                    "1 Custom-Designed Landing Page",
+                    "Up to 3 Custom-Designed Pages",
                     "Mobile-Friendly & Responsive Layout",
                     "Clean Modern Design",
                     "Conversion-Focused Structure",
                     "Contact Form, WhatsApp & Call Integration",
                     "Basic On-Page SEO Setup",
                     "Fast Loading & Optimized Performance",
+                    "Domain & Hosting (up to ₹1000) for 1 Year",
                     "Best For: Ads, Campaigns, Quick Launches"
                 ]
             },
             {
                 name: "Multi-Page Static Package",
+                badge: "Static Website",
                 price: "₹12,000",
                 details: [
                     "Up to 5 Static Pages (Home, About, Services, etc.)",
@@ -259,11 +264,13 @@ export const pricingData: any = {
                     "Contact Form with Email Integration",
                     "Basic Speed Optimization",
                     "Secure & Reliable Setup",
+                    "Domain & Hosting (up to ₹1000) for 1 Year",
                     "Best For: SMBs, Consultants, Startups"
                 ]
             },
             {
                 name: "Advanced Conversion Package",
+                badge: "Dynamic Website",
                 price: "₹20,000",
                 details: [
                     "Up to 8-10 Custom Static Pages",
@@ -273,11 +280,13 @@ export const pricingData: any = {
                     "Dedicated Landing Pages for Ads",
                     "Advanced Speed Optimization",
                     "Google Analytics & Search Console Setup",
+                    "Domain & Hosting (up to ₹1000) for 1 Year",
                     "Best For: Lead Generation & Long-Term Marketing"
                 ]
             },
             {
                 name: "Signature Experience Package",
+                badge: "Dynamic Website",
                 price: "₹30,000",
                 details: [
                     "Up to 10 Custom Static Pages",
@@ -288,6 +297,7 @@ export const pricingData: any = {
                     "Multiple Conversion Landing Sections",
                     "Advanced On-Page SEO Structure",
                     "Google Analytics & Schema Implementation",
+                    "Domain & Hosting (up to ₹3000) for 1 Year",
                     "Best For: Premium Brands & High-End Startups"
                 ]
             }

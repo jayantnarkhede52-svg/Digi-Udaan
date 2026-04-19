@@ -10,6 +10,7 @@ import googleAdsImg from "../assets/google-ads-service.jpg";
 import socialMediaImg from "../assets/social-media-service.jpg";
 import webDevImg from "../assets/web-dev-service.jpg";
 import { blogData } from './blogData';
+import type { DetailedService, Testimonial } from '../types';
 
 export const servicesData = [
     { title: "Google SEO", icon: <img src={seoIcon} alt="SEO" style={{ width: "60px", height: "60px" }} />, gist: "We help your website show up when people search for what you do.", img: seoServiceImg, page: "google-seo" },
@@ -20,7 +21,7 @@ export const servicesData = [
     { title: "React Dev", icon: <img src={reactIcon} alt="React" style={{ width: "60px", height: "60px" }} />, gist: "Good-looking, super fast websites that work great on phones.", img: webDevImg, page: "web-development" }
 ];
 
-export const detailedServicesData: any = {
+export const detailedServicesData: Record<string, DetailedService> = {
     "google-seo": {
         title: "Search Engine Optimization (SEO)",
         desc: "We help your website rank higher on Google so more people find you. We fix the technical stuff, write helpful content, and build your site's reputation online — simple as that.",
@@ -96,7 +97,7 @@ export const whoBenefits = [
 
 export const marqueeKeywords = ["GROWTH", "STRATEGY", "ROI", "LEADS", "BRANDING", "SEO", "PPC", "DIGITAL", "SCALE", "REVENUE", "MUMBAI"];
 
-export const testimonials = [
+export const staticTestimonials: Testimonial[] = [
     { name: "Rajesh K.", role: "CEO, TechFlow", quote: "These guys actually care about results. Our business grew 3x in 6 months — I still can't believe it." },
     { name: "Priya M.", role: "Founder, Glow Skincare", quote: "They understand both good design and getting sales. Best decision we made for our brand." },
     { name: "Amit S.", role: "Director, Urban Homes", quote: "We used to be nowhere on Google. Now we show up first. The phone hasn't stopped ringing." }

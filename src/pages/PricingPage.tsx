@@ -4,9 +4,11 @@ import SEO from '../components/SEO';
 import { colors } from '../data/colors';
 import { pricingData } from '../data/pricingData';
 import pricingHeroVideo from '../assets/videos/pricing-hero.mp4';
+import type { PricingCategory, PricingPackage } from '../types';
 
 const PricingPage = () => {
     const [activeTab, setActiveTab] = useState('pricing_seo');
+    const [customAdsBudget, setCustomAdsBudget] = useState(10000);
 
     return (
         <>
@@ -37,7 +39,7 @@ const PricingPage = () => {
             <section style={{ padding: "0 8% 80px" }}>
                 {/* Navigation Tabs */}
                 <div className="pricing-tabs" style={{ display: "flex", justifyContent: "center", gap: "10px", flexWrap: "wrap", marginBottom: "60px" }}>
-                    {Object.entries(pricingData).map(([key, data]: any) => (
+                    {Object.entries(pricingData).map(([key, data]: [string, PricingCategory]) => (
                         <button
                             key={key}
                             onClick={() => setActiveTab(key)}
@@ -59,7 +61,7 @@ const PricingPage = () => {
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.4 }}
                     >
-                        <div style={{ textAlign: "center", marginBottom: "60px", maxWidth: "800px", margin: "0 auto 40px" }}>
+                        <div style={{ textAlign: "center", marginBottom: "40px", maxWidth: "800px", margin: "0 auto 40px" }}>
                             <div style={{ display: "flex", justifyContent: "center", marginBottom: "20px" }}>
                                 <img src={pricingData[activeTab].icon} alt={pricingData[activeTab].title} style={{ width: "60px", height: "60px", objectFit: "contain" }} />
                             </div>
@@ -68,22 +70,87 @@ const PricingPage = () => {
                         </div>
 
                         <div className="pricing-cards-grid" style={{ display: "grid", gridTemplateColumns: `repeat(${pricingData[activeTab].pkgs.length === 1 ? '1' : activeTab === 'pricing_web' ? '2' : '3'}, 1fr)`, gap: "24px", maxWidth: pricingData[activeTab].pkgs.length === 1 ? "600px" : activeTab === 'pricing_web' ? "1000px" : "1200px", margin: "0 auto" }}>
-                            {pricingData[activeTab].pkgs.map((pkg: any, idx: number) => (
-                                <div key={idx} style={{ background: colors.card, padding: "32px", borderRadius: "24px", border: idx === 1 && pricingData[activeTab].pkgs.length > 1 ? `2px solid ${colors.accent}` : `1px solid ${colors.border}`, position: "relative", transform: idx === 1 && pricingData[activeTab].pkgs.length > 1 ? "scale(1.03)" : "scale(1)", zIndex: idx === 1 ? 2 : 1 }}>
+                            {pricingData[activeTab].pkgs.map((pkg: PricingPackage, idx: number) => (
+                                <div key={idx} style={{ background: colors.card, padding: "32px", borderRadius: "24px", border: idx === 1 && pricingData[activeTab].pkgs.length > 1 ? `2px solid ${colors.accent}` : `1px solid ${colors.border}`, position: "relative", transform: idx === 1 && pricingData[activeTab].pkgs.length > 1 ? "scale(1.03)" : "scale(1)", zIndex: idx === 1 ? 2 : 1, display: "flex", flexDirection: "column" }}>
                                     {idx === 1 && pricingData[activeTab].pkgs.length > 1 && <div style={{ position: "absolute", top: "-16px", left: "50%", transform: "translateX(-50%)", background: colors.accent, color: "white", padding: "6px 16px", borderRadius: "100px", fontSize: "12px", fontWeight: "800", textTransform: "uppercase", whiteSpace: "nowrap" }}>Most Popular</div>}
+                                    {pkg.badge && (
+                                        <div style={{
+                                            alignSelf: "flex-start",
+                                            background: "rgba(139, 92, 246, 0.2)",
+                                            color: colors.accent,
+                                            padding: "6px 12px",
+                                            borderRadius: "8px",
+                                            fontSize: "10px",
+                                            fontWeight: "900",
+                                            marginBottom: "16px",
+                                            border: `1px solid ${colors.accent}`,
+                                            textTransform: "uppercase",
+                                            letterSpacing: "0.5px"
+                                        }}>
+                                            {pkg.badge}
+                                        </div>
+                                    )}
                                     <h3 style={{ fontSize: "20px", fontWeight: "800", marginBottom: "10px" }}>{pkg.name}</h3>
                                     <div className="price" style={{ fontSize: "32px", fontWeight: "800", color: colors.accent, marginBottom: "24px" }}>{pkg.price}</div>
-                                    <div style={{ display: "flex", flexDirection: "column", gap: "12px", marginBottom: "30px" }}>
+                                    <div style={{ display: "flex", flexDirection: "column", gap: "12px", marginBottom: "30px", flexGrow: 1 }}>
                                         {pkg.details.map((detail: string, i: number) => (
                                             <div key={i} style={{ display: "flex", gap: "10px", fontSize: "13px", color: colors.subText, lineHeight: "1.4" }}>
                                                 <span style={{ color: colors.accent, flexShrink: 0 }}>✓</span> {detail}
                                             </div>
                                         ))}
                                     </div>
-                                    <button style={{ width: "100%", padding: "14px", borderRadius: "12px", border: "none", background: "white", color: colors.bg, fontWeight: "800", cursor: "pointer", fontSize: "15px" }}>Get Started Now</button>
+                                    <button style={{ width: "100%", padding: "14px", borderRadius: "12px", border: "none", background: "white", color: colors.bg, fontWeight: "800", cursor: "pointer", fontSize: "15px", marginTop: "auto" }}>Get Started Now</button>
                                 </div>
                             ))}
                         </div>
+
+                        {/* --- CUSTOM ADS SLIDER (ONLY FOR GOOGLE ADS) --- */}
+                        {activeTab === 'pricing_google_ads' && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                style={{ marginTop: "80px", maxWidth: "1000px", margin: "80px auto 0" }}
+                            >
+                                <div style={{ background: colors.card, padding: "40px", borderRadius: "32px", border: `2px solid ${colors.accent}`, textAlign: "center" }}>
+                                    <h3 style={{ fontSize: "28px", fontWeight: "800", marginBottom: "16px" }}>Need a Custom Ads Budget?</h3>
+                                    <p style={{ color: colors.subText, marginBottom: "40px" }}>Slide to calculate your perfect balance between service fee and ad spend.</p>
+
+                                    <div style={{ maxWidth: "600px", margin: "0 auto" }}>
+                                        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "20px", fontSize: "18px", fontWeight: "700" }}>
+                                            <span>Total Investment:</span>
+                                            <span style={{ color: colors.accent }}>₹{customAdsBudget.toLocaleString()}</span>
+                                        </div>
+                                        <input
+                                            type="range"
+                                            min="5000"
+                                            max="30000"
+                                            step="500"
+                                            value={customAdsBudget}
+                                            onChange={(e) => setCustomAdsBudget(parseInt(e.target.value))}
+                                            style={{ width: "100%", height: "10px", borderRadius: "100px", background: colors.border, appearance: "none", cursor: "pointer", outline: "none", marginBottom: "40px" }}
+                                        />
+
+                                        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
+                                            <div style={{ padding: "24px", background: "rgba(255,255,255,0.03)", borderRadius: "20px", border: `1px solid ${colors.border}` }}>
+                                                <div style={{ color: colors.subText, fontSize: "14px", marginBottom: "8px" }}>Our Service Fee</div>
+                                                <div style={{ fontSize: "24px", fontWeight: "800", color: "white" }}>₹3,000</div>
+                                            </div>
+                                            <div style={{ padding: "24px", background: "rgba(139, 92, 246, 0.1)", borderRadius: "20px", border: `1px solid ${colors.accent}` }}>
+                                                <div style={{ color: colors.accent, fontSize: "14px", marginBottom: "8px" }}>Paid to Google</div>
+                                                <div style={{ fontSize: "24px", fontWeight: "800", color: "white" }}>₹{(customAdsBudget - 3000).toLocaleString()}</div>
+                                            </div>
+                                        </div>
+
+                                        <button
+                                            style={{ marginTop: "40px", width: "100%", padding: "18px", borderRadius: "100px", border: "none", background: "white", color: colors.bg, fontWeight: "800", cursor: "pointer", fontSize: "16px" }}
+                                            onClick={() => alert(`Starting custom plan with ₹${customAdsBudget} budget.`)}
+                                        >
+                                            Get Started with This Budget
+                                        </button>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        )}
                     </motion.div>
                 </AnimatePresence>
             </section>

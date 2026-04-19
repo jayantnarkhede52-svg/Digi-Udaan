@@ -1,11 +1,23 @@
 import { Link } from 'react-router-dom';
+import logoImg from '../assets/Logo.png';
 
-const SiteFooter = ({ colors }: any) => {
+interface SiteFooterProps {
+    colors: {
+        border: string;
+        subText: string;
+        card: string;
+    }
+}
+
+const SiteFooter = ({ colors }: SiteFooterProps) => {
     return (
         <footer style={{ padding: "80px 8% 40px", borderTop: `1px solid ${colors.border}`, background: "rgba(10, 5, 20, 0.5)" }}>
             <div className="footer-grid" style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: "60px", marginBottom: "60px" }}>
                 <div>
-                    <div style={{ fontWeight: "800", color: colors.accent, fontSize: "24px", marginBottom: "20px" }}>Digi Udaan</div>
+                    <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "20px" }}>
+                        <img src={logoImg} alt="Digital Udaan Logo" style={{ height: "32px", width: "auto" }} />
+                        <div style={{ fontWeight: "800", color: "white", fontSize: "24px" }}>Digital Udaan</div>
+                    </div>
                     <p style={{ color: colors.subText, lineHeight: "1.7", marginBottom: "24px" }}>
                         The agency for Mumbai's next generation of market leaders. We don't just manage ads; we build growth engines.
                     </p>
@@ -53,7 +65,7 @@ const SiteFooter = ({ colors }: any) => {
                 </div>
             </div>
             <div className="footer-bottom" style={{ display: "flex", justifyContent: "space-between", color: colors.subText, fontSize: "14px", paddingTop: "40px", borderTop: `1px solid rgba(255,255,255,0.05)` }}>
-                <span>© 2024 Digi Udaan. All rights reserved.</span>
+                <span>© 2026 Digital Udaan. All rights reserved.</span>
                 <span>Built with ❤️ in Mumbai</span>
             </div>
         </footer>

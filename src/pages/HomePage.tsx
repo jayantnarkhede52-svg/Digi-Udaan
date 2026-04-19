@@ -1,14 +1,23 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import SEO from '../components/SEO';
 import { colors } from '../data/colors';
-import { marqueeKeywords, testimonials, faqs, servicesData, latestBlogs } from '../data/siteData';
+import { marqueeKeywords, staticTestimonials, faqs, servicesData, latestBlogs as staticBlogs } from '../data/siteData';
 import homeHeroVideo from '../assets/videos/home-hero.mp4';
+import { api } from '../config/api';
+import type { Blog, Testimonial } from '../types';
 
 // --- SUB-COMPONENTS ---
 
-const Marquee = ({ colors }: any) => (
+interface MarqueeProps {
+    colors: {
+        accent: string;
+        border: string;
+    }
+}
+
+const Marquee = ({ colors }: MarqueeProps) => (
     <div className="marquee-container" style={{ background: colors.accent, padding: "20px 0", borderTop: `1px solid ${colors.border}`, borderBottom: `1px solid ${colors.border}` }}>
         <div className="marquee-content">
             {Array(4).fill(marqueeKeywords).flat().map((word, i) => (
@@ -21,6 +30,26 @@ const Marquee = ({ colors }: any) => (
 const HomePage = () => {
     const navigate = useNavigate();
     const [spend, setSpend] = useState(25000);
+    const [blogs, setBlogs] = useState<Blog[]>([]);
+    const [testimonials, setTestimonials] = useState<Testimonial[]>(staticTestimonials);
+
+    useEffect(() => {
+        api.getBlogs().then(data => {
+            if (data && data.length > 0) {
+                setBlogs(data.slice(0, 3));
+            } else {
+                setBlogs(staticBlogs);
+            }
+        }).catch(() => {
+            setBlogs(staticBlogs);
+        });
+
+        api.getTestimonials().then(data => {
+            if (data && data.length > 0) {
+                setTestimonials(data);
+            }
+        }).catch(() => console.error("Failed to load testimonials"));
+    }, []);
 
     const calculateROI = () => {
         const revenue = spend * 3.1;
@@ -61,7 +90,7 @@ const HomePage = () => {
                             Start Your Journey
                         </button>
                         <button
-                            onClick={() => { (window as any).__contactPrefill = "I'd like to request a Free Site Audit."; navigate('/contact'); }}
+                            onClick={() => { window.__contactPrefill = "I'd like to request a Free Site Audit."; navigate('/contact'); }}
                             style={{ padding: "18px 30px", borderRadius: "100px", border: "1px solid rgba(255,255,255,0.3)", background: "rgba(255,255,255,0.05)", color: "white", fontWeight: "700", cursor: "pointer", backdropFilter: "blur(10px)", fontSize: "16px" }}
                         >
                             Free Site Audit
@@ -230,9 +259,13 @@ const HomePage = () => {
                     </div>
 
                     <div className="blog-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "30px" }}>
-                        {latestBlogs.map((blog: any, i: number) => (
+                        {blogs.map((blog: Blog, i: number) => (
                             <div key={i} onClick={() => navigate(`/blog/${blog.slug}`)} style={{ background: colors.bg, borderRadius: "20px", overflow: "hidden", border: `1px solid ${colors.border}`, transition: "transform 0.3s", cursor: "pointer" }}>
-                                <div style={{ height: "180px", background: `linear-gradient(45deg, ${colors.bg}, ${colors.accent})`, opacity: 0.3 }} />
+                                {blog.img ? (
+                                    <img src={blog.img} alt={blog.title} style={{ width: "100%", height: "180px", objectFit: "cover" }} />
+                                ) : (
+                                    <div style={{ height: "180px", background: `linear-gradient(45deg, ${colors.bg}, ${colors.accent})`, opacity: 0.3 }} />
+                                )}
                                 <div style={{ padding: "24px" }}>
                                     <div style={{ color: colors.accent, fontWeight: "700", marginBottom: "10px", fontSize: "12px", textTransform: "uppercase" }}>{blog.category}</div>
                                     <h3 style={{ fontSize: "clamp(18px, 3vw, 22px)", fontWeight: "800", marginBottom: "16px", lineHeight: "1.4" }}>{blog.title}</h3>

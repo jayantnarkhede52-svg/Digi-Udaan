@@ -1,7 +1,17 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import logoImg from '../assets/Logo.png';
 
-const Navbar = ({ colors }: any) => {
+interface NavbarProps {
+    colors: {
+        bg: string;
+        border: string;
+        accent: string;
+        subText: string;
+    }
+}
+
+const Navbar = ({ colors }: NavbarProps) => {
     const [mobileOpen, setMobileOpen] = useState(false);
     const location = useLocation();
 
@@ -28,11 +38,13 @@ const Navbar = ({ colors }: any) => {
     return (
         <>
             <nav style={{
-                display: "flex", justifyContent: "space-between", padding: "20px 8%", position: "fixed", width: "100%", top: 0, zIndex: 1000,
-                background: colors.bg, backdropFilter: "blur(10px)", boxSizing: "border-box", borderBottom: `1px solid ${colors.border}`
+                display: "flex", justifyContent: "space-between", padding: "12px 8%", position: "fixed", width: "100%", top: 0, zIndex: 1000,
+                background: colors.bg, backdropFilter: "blur(12px)", boxSizing: "border-box", borderBottom: `1px solid ${colors.border}`,
+                alignItems: "center"
             }}>
-                <Link to="/" style={{ textDecoration: 'none' }} onClick={handleNav}>
-                    <div style={{ fontWeight: "800", color: colors.accent, cursor: "pointer", fontSize: "20px" }}>Digi Udaan</div>
+                <Link to="/" style={{ textDecoration: 'none', display: "flex", alignItems: "center", gap: "12px" }} onClick={handleNav}>
+                    <img src={logoImg} alt="Digital Udaan Logo" style={{ height: "40px", width: "auto" }} />
+                    <div style={{ fontWeight: "800", color: "white", cursor: "pointer", fontSize: "20px", letterSpacing: "-0.5px" }}>Digital Udaan</div>
                 </Link>
                 <div className="desktop-nav">
                     {navLinks.map(link => (

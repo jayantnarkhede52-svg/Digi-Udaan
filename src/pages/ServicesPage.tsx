@@ -1,10 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import SEO from '../components/SEO';
 import { colors } from '../data/colors';
 import { detailedServicesData } from '../data/siteData';
 import servicesHeroVideo from '../assets/videos/services-hero.mp4';
+import type { DetailedService } from '../types';
 
 const ServicesPage = () => {
+    const navigate = useNavigate();
     return (
         <>
             <SEO
@@ -37,7 +40,7 @@ const ServicesPage = () => {
 
             <section style={{ padding: "0 8% 80px" }}>
                 <div className="services-list" style={{ display: "flex", flexDirection: "column", gap: "100px" }}>
-                    {Object.entries(detailedServicesData).map(([id, s]: any, i) => (
+                    {Object.entries(detailedServicesData).map(([id, s]: [string, DetailedService], i) => (
                         <div key={id} className="service-detail-grid" style={{ display: "grid", gridTemplateColumns: i % 2 === 0 ? "1fr 1.2fr" : "1.2fr 1fr", gap: "60px", alignItems: "center" }}>
                             {i % 2 !== 0 && (
                                 <div className="service-image" style={{ borderRadius: "24px", overflow: "hidden", border: `1px solid ${colors.border}`, height: "400px" }}>
@@ -63,6 +66,16 @@ const ServicesPage = () => {
                                         </div>
                                     ))}
                                 </div>
+
+                                <button
+                                    onClick={() => {
+                                        const routeId = id.replace('service_', '');
+                                        navigate(`/services/${routeId === 'seo' ? 'google-seo' : routeId === 'web' ? 'web-development' : routeId === 'social' ? 'social-media' : routeId === 'gmb' ? 'gmb' : routeId === 'google_ads' ? 'google-ads' : routeId === 'meta_ads' ? 'meta-ads' : routeId}`);
+                                    }}
+                                    style={{ marginTop: "40px", padding: "16px 32px", borderRadius: "100px", border: "none", background: colors.accent, color: "white", fontWeight: "700", cursor: "pointer", transition: "all 0.3s" }}
+                                >
+                                    Learn More About {id.replace('service_', '').toUpperCase()}
+                                </button>
                             </div>
 
                             {i % 2 === 0 && (
